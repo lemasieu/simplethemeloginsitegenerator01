@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tạo trang đăng nhập nhanh</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-column">
+            <h2>Nhập Thông Tin</h2>
+            <form id="colorForm">
+                <label>Độ nghiêng chuyển màu</label>
+                <input type="number" id="angle" placeholder="Độ nghiêng (0-360)" min="0" max="360" /></br>
+                <label>Nền một bên</label>
+                <input type="color" id="color1" placeholder="Màu 1" /></br>
+                <label>Nền bên còn lại</label>
+                <input type="color" id="color2" placeholder="Màu 2" /></br>
+                <label>Nút Đăng nhập</label>
+                <input type="color" id="color3" placeholder="Màu 3" /></br>
+                <label>Rê chuột vào nút</label>
+                <input type="color" id="color6" placeholder="Màu 6" /></br>
+                <label>Chữ Đăng nhập</label>
+                <input type="color" id="color4" placeholder="Màu 4" /></br>
+                <label>Liên kết (QMK&ĐK)</label>
+                <input type="color" id="color5" placeholder="Màu 5" /></br>
+                <label>Chữ trong hộp</label>
+                <input type="color" id="color7" placeholder="Màu chữ" /></br>
+                <button type="button" class="btn" id="createButton">Tạo</button>
+            </form>
+        </div>
+        <div class="right-column">
+            <h2>Kết Quả</h2>
+            Output HTML (index.html):
+            <textarea class="output-box" id="output1" rows="3" readonly>
+                <!DOCTYPE html> <html lang="vi"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Đăng Nhập</title> <link rel="stylesheet" href="styles.css"> </head> <body> <div class="container"> <div class="login-box"> <h2>Đăng Nhập</h2> <form id="loginForm"> <div class="textbox"> <input type="text" id="username" placeholder="Tên đăng nhập" required> </div> <div class="textbox"> <input type="password" id="password" placeholder="Mật khẩu" required> <span id="togglePassword" class="toggle-password">👁️</span> </div> <div class="remember-me"> <label> <input type="checkbox"> Ghi nhớ đăng nhập</label> </div> <button type="submit" class="btn">Đăng Nhập</button> <div class="error-message" id="error-message"></div> <div class="links"> <a href="#">Quên mật khẩu?</a> <a href="#">Đăng ký</a> </div> </form> </div> </div> <script src="script.js"></script> </body> </html>
+            </textarea>
+            Output JS (script.js):
+            <textarea class="output-box" id="output2" rows="3" readonly>
+                document.getElementById("loginForm").addEventListener("submit",function(t){t.preventDefault();const e=document.getElementById("error-message");e.textContent="";var n=document.getElementById("username").value,t=document.getElementById("password").value;n&&t?alert("Đăng nhập thành công!"):e.textContent="Vui lòng điền đầy đủ thông tin!"});const togglePassword=document.getElementById("togglePassword"),passwordInput=document.getElementById("password");togglePassword.addEventListener("click",function(){var t="password"===passwordInput.getAttribute("type")?"text":"password";passwordInput.setAttribute("type",t),this.textContent="password"==t?"👁️":"🙈"});
+            </textarea>
+            Output CSS (styles.css):
+            <textarea class="output-box" id="output3" rows="3" readonly>
+                * {
+                box-sizing: border-box;
+                }
+
+                body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(<input độ nghiêng>deg, <input màu 1>, <input màu 2>);
+                }
+
+                .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                }
+
+                .login-box {
+                background: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(10px);
+                border-radius: 15px;
+                padding: 20px;
+                width: 300px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+
+                h2 {
+                text-align: center;
+                margin-bottom: 20px;
+                }
+
+                .textbox {
+                margin-bottom: 15px;
+                position: relative; /* Thêm để định vị nút ẩn/hiện mật khẩu */
+                }
+
+                .textbox input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                }
+
+                .toggle-password {
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+                cursor: pointer;
+                }
+
+                .remember-me {
+                margin: 10px 0;
+                }
+
+                .btn {
+                width: 100%;
+                padding: 10px;
+                border: none;
+                background-color: <input màu 3>;
+                color: <input màu 4>;
+                border-radius: 5px;
+                cursor: pointer;
+                }
+
+                .btn:hover {
+                background-color: <input màu 6>;
+                }
+
+                .links {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 10px;
+                }
+
+                .links a {
+                color: <input màu 5>;
+                text-decoration: none;
+                }
+
+                .links a:hover {
+                text-decoration: underline;
+                }
+
+                .error-message {
+                color: red;
+                text-align: center;
+                margin-top: 10px;
+                }
+            </textarea>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
